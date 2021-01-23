@@ -6,3 +6,5 @@ This is a code repository to the [University of Waterloo Course Algorithms (CS 3
 - Greedy
 - Breadth First Search
 - Depth First Search
+
+.. and each script contains a tiny chunk of testing code.
