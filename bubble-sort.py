@@ -1,7 +1,7 @@
 from util import swap
 
 
-def bubbleSort(arr):
+def bubble_sort(arr):
     for i in range(len(arr) - 1):
         swapped = False
         for j in range(0, len(arr) - 1 - i):
@@ -15,4 +15,4 @@ def bubbleSort(arr):
 
 if __name__ == '__main__':
     arr = [5, 3]
-    print(bubbleSort(arr))
+    print(bubble_sort(arr))

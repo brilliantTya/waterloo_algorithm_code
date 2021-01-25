@@ -1,7 +1,4 @@
-from util import swap
-
-
-def insertionSort(arr):
+def insertion_sort(arr):
     for i in range(1, len(arr)):
         for j in range(i):
             if j == 0 and arr[i] < arr[j]:
@@ -13,4 +10,4 @@ def insertionSort(arr):
 
 if __name__ == '__main__':
     arr = [5, 3, 1, 4, 2]
-    print(insertionSort(arr))
+    print(insertion_sort(arr))

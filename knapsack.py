@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def knapsack(arr, capacity: int):
     '''
     dp[i][j]: maximum value from arr[i:] with j capacity left

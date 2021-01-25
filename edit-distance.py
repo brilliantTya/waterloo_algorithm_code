@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def editDistance(str1, str2):
+def edit_distance(str1, str2):
     n, m = len(str1), len(str2)
     dp = [[float('inf') for j in range(m + 1)] for i in range(n + 1)]
 
@@ -25,4 +25,4 @@ def editDistance(str1, str2):
 if __name__ == '__main__':
     str1 = 'snowy'
     str2 = 'sunny'
-    print(editDistance(str1, str2))
+    print(edit_distance(str1, str2))

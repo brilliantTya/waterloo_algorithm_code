@@ -42,7 +42,7 @@ def _nonweighted(arr):
     return chosen
 
 
-def intervalScheduling(arr, weighted=False):
+def interval_scheduling(arr, weighted=False):
     if weighted:
         return _weighted(arr)
     else:
@@ -52,4 +52,4 @@ def intervalScheduling(arr, weighted=False):
 if __name__ == '__main__':
     arr = [((2, 5), 9), ((3, 7), 10), ((4, 10), 25), ((1, 1), 2),
            ((0, 9), 20), ((1, 6), 17), ((3, 5), 6), ((2, 4), 5), ((4, 5), 1)]
-    print(intervalScheduling(arr, weighted=True))
+    print(interval_scheduling(arr, weighted=True))

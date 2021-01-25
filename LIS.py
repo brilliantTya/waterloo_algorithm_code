@@ -1,8 +1,7 @@
-import numpy as np
 from util import binary_search
 
 
-def longestIncreasingSeq(arr):
+def longest_increasing_subseq(arr):
     '''
     dp[i]: best position to start an increasing sequence of length i,
            where best means the rearest. Because dp -> [1..max] is sorted in
@@ -22,4 +21,4 @@ def longestIncreasingSeq(arr):
 
 if __name__ == '__main__':
     arr = [5, 3, 10, 9, 6, 8, 7, 4, 1, 12, 6]
-    print(longestIncreasingSeq(arr))
+    print(longest_increasing_subseq(arr))

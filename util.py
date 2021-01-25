@@ -37,19 +37,19 @@ def _sort_points(arr, i, j, by='y'):
         axis = 0
 
     pivot = arr[j - 1][axis]
-    l, r = 0, j - 2
+    lpointer, rpointer = 0, j - 2
     while True:
-        while l <= r and arr[l][axis] <= pivot:
-            l += 1
-        while l <= r and arr[r][axis] >= pivot:
-            r -= 1
-        if l < r:
-            swap(arr, l, r)
+        while lpointer <= rpointer and arr[lpointer][axis] <= pivot:
+            lpointer += 1
+        while lpointer <= rpointer and arr[rpointer][axis] >= pivot:
+            rpointer -= 1
+        if lpointer < rpointer:
+            swap(arr, lpointer, rpointer)
         else:
             break
-    swap(arr, l, j - 1)
-    _sort_points(arr, i, l, by=by)
-    _sort_points(arr, l, j, by=by)
+    swap(arr, lpointer, j - 1)
+    _sort_points(arr, i, lpointer, by=by)
+    _sort_points(arr, lpointer, j, by=by)
     return arr
 
 

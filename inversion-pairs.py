@@ -1,22 +1,18 @@
-from copy import copy
-
-
-def _inservionPairs(arr, i, j):
+def _inversion_pairs(arr, i, j):
     if j - i == 0:
         return [], 0, []
     if j - i == 1:
         return [arr[i]], 0, []
 
     c = (i + j) // 2
-    left, lcount, lpairs = _inservionPairs(arr, i, c)
-    right, rcount, rpairs = _inservionPairs(arr, c, j)
+    left, lcount, lpairs = _inversion_pairs(arr, i, c)
+    right, rcount, rpairs = _inversion_pairs(arr, c, j)
     pairs = lpairs + rpairs
     count = lcount + rcount
     out = []
-    rlength, rcopy = len(right), copy(right)
 
     while len(left) > 0 and len(right) > 0:
-        if left[0] <= right [0]:
+        if left[0] <= right[0]:
             out.append(left.pop(0))
         else:
             this = right.pop(0)
@@ -29,10 +25,11 @@ def _inservionPairs(arr, i, j):
 
     return out, count, pairs
 
-def inversionPairs(arr):
-    return _inservionPairs(arr, 0, len(arr))
+
+def inversion_pairs(arr):
+    return _inversion_pairs(arr, 0, len(arr))
 
 
 if __name__ == '__main__':
     arr = [10, 7, 9, 2, 7, 5, 4, 8]
-    print(inversionPairs(arr))
+    print(inversion_pairs(arr))

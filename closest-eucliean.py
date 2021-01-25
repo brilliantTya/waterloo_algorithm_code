@@ -1,7 +1,7 @@
 from util import eucliean, sort_points, rank_points
 
 
-def closestEucliean(arr):
+def closest_eucliean(arr):
     if len(arr) <= 1:
         return float('inf'), (None, None)
     if 1 < len(arr) <= 12:
@@ -16,7 +16,6 @@ def closestEucliean(arr):
                         group = (arr[i], arr[j])
         return closest, group
 
-
     x_median = rank_points(arr, len(arr) // 2, by='x')
     left, right = [], []
     for each in arr:
@@ -25,8 +24,8 @@ def closestEucliean(arr):
         else:
             right.append(each)
 
-    lclosest, lgroup = closestEucliean(left)
-    rclosest, rgroup = closestEucliean(right)
+    lclosest, lgroup = closest_eucliean(left)
+    rclosest, rgroup = closest_eucliean(right)
     if lclosest <= rclosest:
         closest = lclosest
         group = lgroup
@@ -42,8 +41,8 @@ def closestEucliean(arr):
     sorted_candidates = sort_points(candidates)
     i = 0
     while i < len(candidates):
-        currclosest, currgroup = closestEucliean(sorted_candidates[i:
-                                                 min(len(arr), i + 12)])
+        currclosest, currgroup = closest_eucliean(sorted_candidates[i:
+                                                  min(len(arr), i + 12)])
         if currclosest < closest:
             closest = currclosest
             group = currgroup
@@ -53,4 +52,4 @@ def closestEucliean(arr):
 
 if __name__ == '__main__':
     arr = [(2, 5), (3, 7), (4, 10), (1, 1), (0, 9), (1, 6)]
-    print(closestEucliean(arr))
+    print(closest_eucliean(arr))

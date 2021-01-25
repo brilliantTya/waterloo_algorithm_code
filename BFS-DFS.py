@@ -9,9 +9,18 @@ class Stack:
         self.arr.append(obj)
 
     def pop(self):
-        return self.arr.pop()
+        if not self.is_empty():
+            return self.arr.pop()
+        else:
+            raise IndexError
 
-    def isEmpty(self):
+    def peek(self):
+        if not self.is_empty():
+            return self.arr[-1]
+        else:
+            raise IndexError
+
+    def is_empty(self):
         return len(self.arr) == 0
 
 
@@ -26,14 +35,17 @@ class Queue:
         self.arr.append(obj)
 
     def pop(self):
-        return self.arr.pop(0)
+        if not self.is_empty():
+            return self.arr.pop(0)
+        else:
+            raise IndexError
 
-    def isEmpty(self):
+    def is_empty(self):
         return len(self.arr) == 0
 
 
 class Vertex:
-    def __init__(self, value, neighbors=[]):
+    def __init__(self, value, neighbors=None):
         self.value = value
         self.neighbors = neighbors
 
@@ -46,24 +58,23 @@ class BFS:
         self.directed = directed
         self.vertices = vertices
 
-        self.resetConnection()
-        self.connected = self.checkConnectivity()
+        self.reset_connection()
+        self.connected = self.check_connectivity()
         self.bipartiteness = self.bipartite()
 
-    def resetConnection(self):
+    def reset_connection(self):
         for vertex in self.vertices:
             vertex.visited = False
             vertex.distance = float('inf')
 
     def connect(self, root):
-        self.resetConnection()
-        distance = 0
+        self.reset_connection()
         root.visited = True
         root.distance = 0
         queue = Queue()
         queue.push(root)
 
-        while not queue.isEmpty():
+        while not queue.is_empty():
             curr = queue.pop()
             for neighbor in curr.neighbors:
                 if not neighbor.visited:
@@ -71,20 +82,20 @@ class BFS:
                     neighbor.distance = curr.distance + 1
                     queue.push(neighbor)
 
-    def checkConnectivity(self):
+    def check_connectivity(self):
         self.connect(self.vertices[0])
         for vertex in self.vertices:
             if not vertex.visited:
                 return False
         return True
 
-    def shortestDistance(self, vertex1, vertex2):
-        self.resetConnection()
+    def shortest_distance(self, vertex1, vertex2):
+        self.reset_connection()
         self.connect(vertex1)
         return vertex2.distance
 
     def bipartite(self):
-        self.resetConnection()
+        self.reset_connection()
         self.connect(self.vertices[0])
         even, odd = [], []
         for vertex in self.vertices:
@@ -108,30 +119,33 @@ class DFS:
         self.directed = directed
         self.vertices = vertices
 
-        self.resetConnection()
-        self.connectivity = self.checkConnectivity()
+        self.reset_connection()
+        self.connectivity = self.check_connectivity()
 
-    def resetConnection(self):
+    def reset_connection(self):
         for vertex in self.vertices:
             vertex.visited = False
             vertex.start, vertex.end = float('inf'), float('inf')
 
     def connect(self, root):
-        self.resetConnection()
+        self.reset_connection()
         stack = Stack()
         stack.push(root)
         root.visited = True
-        root.start = time
 
-        while not stack.isEmpty():
-            curr = stack.pop()
+        while not stack.is_empty():
+            curr = stack.peek()
+            finished = True
             for neighbor in curr.neighbors:
                 if not neighbor.visited:
                     neighbor.visited = True
-                    neighbor.start = time
                     stack.push(neighbor)
+                    finished = False
+                    break
+            if finished:
+                stack.pop()
 
-    def checkConnectivity(self):
+    def check_connectivity(self):
         self.connect(self.vertices[0])
         for vertex in self.vertices:
             if not vertex.visited:
@@ -142,11 +156,10 @@ class DFS:
 if __name__ == '__main__':
     a, b, c, d, e, f = Vertex('a'), Vertex('b'), \
         Vertex('c'), Vertex('d'), Vertex('e'), Vertex('f')
-    a.neighbors = [d, e, f]
-    b.neighbors = [e, f]
-    c.neighbors = [d, f]
+    a.neighbors = [d, e]
+    b.neighbors = [e]
+    c.neighbors = [d]
     d.neighbors = [a, c]
     e.neighbors = [a, b]
-    f.neighbors = [a, b, c]
     ds = DFS([a, b, c, d, e, f])
     print(ds.connectivity)

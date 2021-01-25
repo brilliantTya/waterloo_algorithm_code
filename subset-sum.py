@@ -1,4 +1,4 @@
-def subsetSum(arr, target):
+def subset_sum(arr, target):
     '''
     dp[i][j]: whether there is a subset in arr[i:] that add up to j
     recurrence: dp[i][j] = dp[i + 1][j] or dp[i + 1][j - arr[i]]
@@ -27,4 +27,4 @@ def subsetSum(arr, target):
 
 if __name__ == '__main__':
     arr = [2, 3, 4, 1, 0, 1, 7, 9, 6]
-    print(subsetSum(arr, 13))
+    print(subset_sum(arr, 13))

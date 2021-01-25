@@ -23,6 +23,7 @@ def rank(arr, k):
     else:
         return rank(larger, k - len(smaller) - len(equal))
 
+
 def median(arr):
     return rank(arr, len(arr) // 2)
 

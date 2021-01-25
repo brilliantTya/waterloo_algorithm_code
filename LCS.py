@@ -1,4 +1,4 @@
-def longestCommonSeq(str1, str2):
+def longest_common_subseq(str1, str2):
     n, m = len(str1), len(str2)
     if n == 0 or m == 0:
         return ''
@@ -23,4 +23,4 @@ def longestCommonSeq(str1, str2):
 if __name__ == '__main__':
     str1 = 'snowy'
     str2 = 'sunny'
-    print(longestCommonSeq(str1, str2))
+    print(longest_common_subseq(str1, str2))
